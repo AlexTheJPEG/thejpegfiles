@@ -39,22 +39,69 @@ import { Image } from "astro:assets"
             </p>
         </div>
         <div>
-            <nav class="container mx-auto flex justify-between mt-8 mb-8">
+            <nav id="interests" class="container mx-auto flex justify-between mt-8 mb-8">
                 <ul class="text-2xl list-none mb-0 flex">
-                    <li class="text-gray-400 hover:text-white mr-16 cursor-pointer">
+                    <li id="tech" class="text-gray-400 hover:text-white mr-16 cursor-pointer transition-colors duration-200">
                         🖥️ Tech
                     </li>
-                    <li class="text-gray-400 hover:text-white mr-16 cursor-pointer">
+                    <li id="gaming" class="text-gray-400 hover:text-white mr-16 cursor-pointer transition-colors duration-200">
                         🎮️ Gaming
                     </li>
-                    <li class="text-gray-400 hover:text-white mr-16 cursor-pointer">
+                    <li id="anime" class="text-gray-400 hover:text-white mr-16 cursor-pointer transition-colors duration-200">
                         🇯🇵️ Anime
                     </li>
-                    <li class="text-gray-400 hover:text-white mr-16 cursor-pointer">
+                    <li id="music" class="text-gray-400 hover:text-white mr-16 cursor-pointer transition-colors duration-200">
                         🎵 Music
                     </li>
                 </ul>
             </nav>
+            <div id="content" class="text-white text-lg">
+                <div id="tech-content" class="interest-content">
+                    <p>This is the tech section.</p>
+                </div>
+                <div id="gaming-content" class="interest-content" style="display: none;">
+                    <p>This is the gaming section.</p>
+                </div>
+                <div id="anime-content" class="interest-content" style="display: none;">
+                    <p>This is the anime section.</p>
+                </div>
+                <div id="music-content" class="interest-content" style="display: none;">
+                    <p>This is the music section.</p>
+                </div>
+            </div>
         </div>
     </main>
+    <script>
+        const navItems = document.querySelectorAll('#interests ul li');
+        const contentDivs = document.querySelectorAll('.interest-content') as NodeListOf<HTMLElement>;
+    
+        function showContent(interest: string) {
+            contentDivs.forEach(div => {
+                if (div.id === `${interest}-content`) {
+                    div.style.display = 'block';
+                } else {
+                    div.style.display = 'none';
+                }
+            });
+
+            navItems.forEach(item => {
+                if (item.id === interest) {
+                    item.classList.remove('text-gray-400');
+                    item.classList.add('text-white', 'underline');
+                } else {
+                    item.classList.remove('text-white', 'underline');
+                    item.classList.add('text-gray-400');
+                }
+            });
+        }
+    
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const interest = item.id;
+                showContent(interest);
+            });
+        });
+
+        showContent("tech");
+    </script>
 </HomeLayout>
