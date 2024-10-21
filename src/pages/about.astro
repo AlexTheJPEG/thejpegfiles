@@ -1,0 +1,60 @@
+---
+import HomeLayout from "../layouts/HomeLayout.astro"
+import Navbar from "../components/Navbar.astro"
+
+import { Image } from "astro:assets"
+---
+<head>
+    <meta charset="UTF-8" />
+</head>
+<Navbar />
+<HomeLayout title="The JPEG Files" description="A website and blog by Alex The JPEG">
+    <main class="max-w-4xl mx-auto p-4 mt-6 flex flex-col justify-start items-start h-screen">
+        <div class="text-white">
+            <div class="flex flex-col items-center justify-center mb-8">
+                <Image
+                    src="/about/me.png"
+                    alt="Me!"
+                    width={300}
+                    height={300}
+                />
+                <h1 class="text-4xl font-bold mt-6">👋 Yo</h1>
+            </div>
+            <p class="text-lg mb-4">
+                {`
+                Hey there! I'm Alex, just a random guy on planet Earth that partakes in 
+                coding, gaming, watching anime, reading manga, listening to music, playing 
+                the piano, and trying to be funny on the Internet. I also make stupid stick
+                figure drawings sometimes. Once I'm unbound by the shackles of academia,
+                I'll also make YouTube videos / livestreams.
+                `}
+            </p>
+            <p class="text-lg mb-4">
+                {`
+                On this site, you'll find anything that I feel like I want to share with
+                the world, whether that'd be linking cool stuff I found, ranting about
+                technology not working, talking about a game I've played or show I've watched,
+                or anything else, really.
+                `}
+            </p>
+        </div>
+        <div>
+            <nav class="container mx-auto flex justify-between mt-8 mb-8">
+                <ul class="text-2xl list-none mb-0 flex">
+                    <li class="text-gray-400 hover:text-white mr-16 cursor-pointer">
+                        🖥️ Tech
+                    </li>
+                    <li class="text-gray-400 hover:text-white mr-16 cursor-pointer">
+                        🎮️ Gaming
+                    </li>
+                    <li class="text-gray-400 hover:text-white mr-16 cursor-pointer">
+                        🇯🇵️ Anime
+                    </li>
+                    <li class="text-gray-400 hover:text-white mr-16 cursor-pointer">
+                        🎵 Music
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </main>
+</HomeLayout>
