@@ -1,10 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
-import HomeLayout from "../layouts/HomeLayout.astro"
+import BaseLayout from "../layouts/BaseLayout.astro"
 
 const posts = await getCollection('blog');
 ---
-<HomeLayout title="The JPEG Files" description="A website and blog by Alex The JPEG">
+<BaseLayout title="The JPEG Files" description="A website and blog by Alex The JPEG">
     <div class="text-white mb-8">
         <h1 class="text-5xl font-bold mt-20">Welcome!</h1>
         <p class="text-lg mt-4">Here you'll find a JPEG's ramblings about miscellany.</p>
@@ -28,4 +28,4 @@ const posts = await getCollection('blog');
             </a>
         ))}
     </div>
-</HomeLayout>
+</BaseLayout>
