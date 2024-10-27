@@ -12,20 +12,20 @@ const posts = await getCollection('blog');
     <div class="text-white w-full">
         <h2 class="text-3xl font-bold mt-8">Posts</h2>
         {posts.map(post => (
-                <a href={"/blog/" + post.slug}>
-                    <div class="bg-gray-800 p-4 rounded-lg shadow-lg mt-4">
-                        <div class="flex justify-between items-center">
-                            <h3 class="text-xl font-semibold">{post.data.title}</h3>
-                            <span class="text-gray-400 text-sm">{new Date(post.data.date).toISOString().split('T')[0]}</span>
-                        </div>
-                        <p class="mt-2">{post.data.excerpt}</p>
-                        <div class="mt-2">
-                            {post.data.tags.map(tag => (
-                                <span class="text-sm text-white bg-gray-600 px-2 py-1 rounded-full mr-2">{tag}</span>
-                            ))}
-                        </div>
+            <a href={`/blog/${post.slug}`}>
+                <div class="bg-gray-800 p-4 rounded-lg shadow-lg mt-4">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-semibold">{post.data.title}</h3>
+                        <span class="text-gray-400 text-sm">{new Date(post.data.date).toISOString().split('T')[0]}</span>
                     </div>
-                </a>
+                    <p class="mt-2">{post.data.excerpt}</p>
+                    <div class="mt-2">
+                        {post.data.tags.map(tag => (
+                            <span class="text-sm text-white bg-gray-600 px-2 py-1 rounded-full mr-2">{tag}</span>
+                        ))}
+                    </div>
+                </div>
+            </a>
         ))}
     </div>
 </HomeLayout>
