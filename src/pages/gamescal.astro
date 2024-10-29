@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 ---
 
 <BaseLayout title="NYTimes Games Calendar" description="Archive and statistics for my NYTimes Games results">
@@ -21,13 +23,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             </div>
         </div>
         <div class="grid grid-cols-7 gap-4 mt-6 text-center">
-            <div class="font-bold">Sun</div>
-            <div class="font-bold">Mon</div>
-            <div class="font-bold">Tue</div>
-            <div class="font-bold">Wed</div>
-            <div class="font-bold">Thu</div>
-            <div class="font-bold">Fri</div>
-            <div class="font-bold">Sat</div>
+            {daysOfWeek.map(day => <div class="font-bold">{day}</div>)}
         </div>
         <div id="calendar" class="grid grid-cols-7 gap-4 mt-2 text-center"/>
     </div>
