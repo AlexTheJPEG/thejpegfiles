@@ -14,9 +14,8 @@ const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
                 <div class="flex items-center justify-between px-10 py-3 bg-gray-700 rounded">
                     <button id="prevMonth" class="text-white px-10">Previous</button>
                     <div class="flex-1 flex items-center justify-center">
-                        <h2 id="currentMonth"
-                            class="text-white w-20 text-left">{new Date().toLocaleString('en-US', {month: 'long'})}</h2>
-                        <h2 id="currentYear" class="text-white w-10 text-right">{new Date().getFullYear()}</h2>
+                        <h2 id="currentMonth" class="text-white w-20 text-left"></h2>
+                        <h2 id="currentYear" class="text-white w-10 text-right"></h2>
                     </div>
                     <button id="nextMonth" class="text-white px-10">Next</button>
                 </div>
@@ -50,11 +49,13 @@ const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
         const prevDaysInMonth = new Date(year, monthIndex, 0).getDate();
 
-        const today = new Date();
         const isCurrentMonth = today.getFullYear() === year && today.getMonth() === monthIndex;
 
         const calendarElement = document.getElementById('calendar');
         if (!calendarElement) return;
+
+        // Helper function for zero-padding
+        const zeroPad = (num: number): string => (num < 10 ? '0' + num : num.toString());
 
         // Clear previous calendar days
         calendarElement.innerHTML = '';
@@ -62,18 +63,20 @@ const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         // Fill the calendar with previous month's days
         for (let i = firstDay - 1; i >= 0; i--) {
             const prevMonthDayCell = document.createElement('div');
-            prevMonthDayCell.className = 'bg-gray-800 py-2 rounded'; // Dimmer background
+            prevMonthDayCell.className = 'bg-gray-800 py-2 rounded cursor-pointer'; // Dimmer background
             prevMonthDayCell.textContent = (prevDaysInMonth - i).toString();
+            prevMonthDayCell.addEventListener('click', () => showModal(`${year}-${zeroPad(monthIndex)}-${zeroPad(prevDaysInMonth - i)}`));
             calendarElement.appendChild(prevMonthDayCell);
         }
 
         // Fill the calendar with current month's days
         for (let i = 1; i <= daysInMonth; i++) {
             const dayCell = document.createElement('div');
-            dayCell.className = 'py-2 rounded';
+            dayCell.className = 'py-2 rounded cursor-pointer';
             // Highlight the current date blue
             dayCell.className += isCurrentMonth && i === today.getDate() ? ' bg-blue-600' : ' bg-gray-600';
             dayCell.textContent = i.toString();
+            dayCell.addEventListener('click', () => showModal(`${year}-${zeroPad(monthIndex + 1)}-${zeroPad(i)}`));
             calendarElement.appendChild(dayCell);
         }
 
@@ -82,8 +85,9 @@ const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         const remainingDays = totalDisplayedDays % 7 ? 7 - (totalDisplayedDays % 7) : 0;
         for (let i = 1; i <= remainingDays; i++) {
             const nextMonthDayCell = document.createElement('div');
-            nextMonthDayCell.className = 'bg-gray-800 py-2 rounded'; // Dimmer background
+            nextMonthDayCell.className = 'bg-gray-800 py-2 rounded cursor-pointer'; // Dimmer background
             nextMonthDayCell.textContent = i.toString();
+            nextMonthDayCell.addEventListener('click', () => showModal(`${year}-${zeroPad(monthIndex + 2)}-${zeroPad(i)}`));
             calendarElement.appendChild(nextMonthDayCell);
         }
     };
@@ -131,6 +135,34 @@ const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
             renderCalendar(currentMonthIndex, currentYear);
         }
     });
+
+    // Create a modal element
+    const modalElement = document.createElement('div');
+    modalElement.id = 'dateModal';
+    modalElement.style.display = 'none'; // Hide by default
+    modalElement.className = 'fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center';
+    modalElement.innerHTML = `
+            <div class="bg-white rounded p-4 text-black">
+                <p id="modalDate"></p>
+                <button id="closeModal" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded">Close</button>
+            </div>
+        `;
+    document.body.appendChild(modalElement);
+
+    const showModal = (date: string) => {
+        const modalDateElement = document.getElementById('modalDate');
+        if (modalDateElement) {
+            modalDateElement.textContent = `${date}`;
+        }
+        modalElement.style.display = 'flex';
+    };
+
+    const closeModal = () => {
+        modalElement.style.display = 'none';
+    };
+
+    const closeModalButton = document.getElementById('closeModal');
+    closeModalButton?.addEventListener('click', closeModal);
 
     // Initial render for the current month and year
     renderCalendar(new Date().getMonth(), new Date().getFullYear());
