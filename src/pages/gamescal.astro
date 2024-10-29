@@ -33,6 +33,13 @@ const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const currentMonthElement = document.getElementById('currentMonth');
     const currentYearElement = document.getElementById('currentYear');
 
+    let today: Date;
+    if (currentMonthElement && currentYearElement) {
+        today = new Date();
+        currentMonthElement.textContent = today.toLocaleString('en-US', {month: 'long'});
+        currentYearElement.textContent = today.getFullYear().toString();
+    }
+
     // Define months array
     const months = ['January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December'];
