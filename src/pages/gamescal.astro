@@ -43,10 +43,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     const renderCalendar = (monthIndex: number, year: number) => {
         const firstDay = new Date(year, monthIndex, 1).getDay();
+
         const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
         const prevDaysInMonth = new Date(year, monthIndex, 0).getDate();
-        const calendarElement = document.getElementById('calendar');
 
+        const today = new Date();
+        const isCurrentMonth = today.getFullYear() === year && today.getMonth() === monthIndex;
+
+        const calendarElement = document.getElementById('calendar');
         if (!calendarElement) return;
 
         // Clear previous calendar days
@@ -55,7 +59,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         // Fill the calendar with previous month's days
         for (let i = firstDay - 1; i >= 0; i--) {
             const prevMonthDayCell = document.createElement('div');
-            prevMonthDayCell.className = 'bg-gray-400 py-2 rounded'; // Dimmer background
+            prevMonthDayCell.className = 'bg-gray-800 py-2 rounded'; // Dimmer background
             prevMonthDayCell.textContent = (prevDaysInMonth - i).toString();
             calendarElement.appendChild(prevMonthDayCell);
         }
@@ -63,7 +67,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         // Fill the calendar with current month's days
         for (let i = 1; i <= daysInMonth; i++) {
             const dayCell = document.createElement('div');
-            dayCell.className = 'bg-gray-600 py-2 rounded';
+            dayCell.className = 'py-2 rounded';
+            // Highlight the current date blue
+            dayCell.className += isCurrentMonth && i === today.getDate() ? ' bg-blue-600' : ' bg-gray-600';
             dayCell.textContent = i.toString();
             calendarElement.appendChild(dayCell);
         }
@@ -73,7 +79,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         const remainingDays = totalDisplayedDays % 7 ? 7 - (totalDisplayedDays % 7) : 0;
         for (let i = 1; i <= remainingDays; i++) {
             const nextMonthDayCell = document.createElement('div');
-            nextMonthDayCell.className = 'bg-gray-400 py-2 rounded'; // Dimmer background
+            nextMonthDayCell.className = 'bg-gray-800 py-2 rounded'; // Dimmer background
             nextMonthDayCell.textContent = i.toString();
             calendarElement.appendChild(nextMonthDayCell);
         }
