@@ -7,13 +7,16 @@
         "start": "astro dev",
         "build": "astro check && astro build",
         "preview": "astro preview",
-        "astro": "astro"
+        "astro": "astro",
+        "prepare": "husky && husky install"
     },
     "devDependencies": {
         "@astrojs/check": "^0.9.4",
         "@astrojs/tailwind": "^5.1.2",
         "@iconify-json/ri": "^1.2.2",
         "@iconify-json/simple-icons": "^1.2.9",
+        "husky": "^9.1.6",
+        "lint-staged": "^15.2.10",
         "prettier": "^3.3.3",
         "prettier-plugin-astro": "^0.14.1",
         "sass": "^1.80.1",
@@ -27,5 +30,8 @@
         "astro-icon": "^1.1.1",
         "mdx": "^0.2.3",
         "preact": "^10.24.3"
+    },
+    "lint-staged": {
+        "*.{astro,mdx,ts,mjs,json}": "prettier --write"
     }
 }
