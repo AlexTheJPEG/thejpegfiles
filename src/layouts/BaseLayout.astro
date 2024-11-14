@@ -1,28 +1,29 @@
 ---
 interface Props {
-	title: string;
-	description: string;
+    title: string;
+    description: string;
 }
 
 const { title, description } = Astro.props;
 
-import Navbar from "../components/Navbar.astro"
-import Footer from "../components/Footer.astro"
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
 ---
+
 <html class="bg-neutral-800" lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<Navbar />
-		<main class="max-w-4xl mx-auto p-4 mt-6 flex flex-col justify-start items-start min-h-screen">
-			<slot />
-		</main>
-		<Footer />
-	</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content={description} />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+    </head>
+    <body>
+        <Navbar />
+        <main class="max-w-4xl mx-auto p-4 mt-6 flex flex-col justify-start items-start min-h-screen">
+            <slot />
+        </main>
+        <Footer />
+    </body>
 </html>

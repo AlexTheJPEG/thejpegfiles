@@ -1,7 +1,7 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from "astro:content";
 
 const postsCollection = defineCollection({
-    type: 'content',
+    type: "content",
     schema: ({ image }) =>
         // using zod to define type-safe frontmatter of our mdx files
         // astro will generate types definitions for our project so we can use them in templates

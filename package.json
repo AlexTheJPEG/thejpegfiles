@@ -1,29 +1,31 @@
 {
-  "name": "thejpegfiles",
-  "type": "module",
-  "version": "1.0.0",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "devDependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@astrojs/tailwind": "^5.1.2",
-    "@iconify-json/ri": "^1.2.2",
-    "@iconify-json/simple-icons": "^1.2.9",
-    "sass": "^1.80.1",
-    "tailwindcss": "^3.4.14",
-    "typescript": "^5.6.3"
-  },
-  "dependencies": {
-    "@astrojs/mdx": "^3.1.8",
-    "@astrojs/preact": "^3.5.3",
-    "astro": "^4.16.5",
-    "astro-icon": "^1.1.1",
-    "mdx": "^0.2.3",
-    "preact": "^10.24.3"
-  }
+    "name": "thejpegfiles",
+    "type": "module",
+    "version": "1.0.0",
+    "scripts": {
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro check && astro build",
+        "preview": "astro preview",
+        "astro": "astro"
+    },
+    "devDependencies": {
+        "@astrojs/check": "^0.9.4",
+        "@astrojs/tailwind": "^5.1.2",
+        "@iconify-json/ri": "^1.2.2",
+        "@iconify-json/simple-icons": "^1.2.9",
+        "prettier": "^3.3.3",
+        "prettier-plugin-astro": "^0.14.1",
+        "sass": "^1.80.1",
+        "tailwindcss": "^3.4.14",
+        "typescript": "^5.6.3"
+    },
+    "dependencies": {
+        "@astrojs/mdx": "^3.1.8",
+        "@astrojs/preact": "^3.5.3",
+        "astro": "^4.16.5",
+        "astro-icon": "^1.1.1",
+        "mdx": "^0.2.3",
+        "preact": "^10.24.3"
+    }
 }
