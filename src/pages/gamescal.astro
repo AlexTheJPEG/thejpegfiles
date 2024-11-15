@@ -1,14 +1,15 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 ---
 
 <BaseLayout title="NYTimes Games Calendar" description="Archive and statistics for my NYTimes Games results">
     <div class="text-white">
         <h1 class="text-5xl font-bold mt-20">NYTimes Games Calendar</h1>
-        <p class="text-lg mt-4">An archive of and some statistics for my NYTimes Games
-            (Wordle, Connections, Strands) results.</p>
+        <p class="text-lg mt-4">
+            An archive of and some statistics for my NYTimes Games (Wordle, Connections, Strands) results.
+        </p>
         <div class="flex justify-center items-center mt-10 space-x-4">
             <button id="prevMonth" class="text-white px-10 py-2 bg-gray-700 rounded">Previous</button>
             <div class="text-white">
@@ -22,27 +23,48 @@ const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
             <button id="nextMonth" class="text-white px-10 py-2 bg-gray-700 rounded">Next</button>
         </div>
         <div class="grid grid-cols-7 gap-4 mt-6 text-center">
-            {daysOfWeek.map(day =>
-                    <div class="font-bold">{day}</div>)}
+            {daysOfWeek.map((day) => <div class="font-bold">{day}</div>)}
         </div>
-        <div id="calendar" class="grid grid-cols-7 gap-4 mt-2 text-center"/>
+        <div id="calendar" class="grid grid-cols-7 gap-4 mt-2 text-center"></div>
+    </div>
+    <div
+        id="dateModal"
+        class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center"
+        style="display: none;"
+    >
+        <div class="bg-white rounded p-4 text-black">
+            <p id="modalDate"></p>
+            <button id="closeModal" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded">Close</button>
+        </div>
     </div>
 </BaseLayout>
 
 <script>
-    const currentMonthElement = document.getElementById('currentMonth');
-    const currentYearElement = document.getElementById('currentYear');
+    const currentMonthElement = document.getElementById("currentMonth");
+    const currentYearElement = document.getElementById("currentYear");
 
     let today: Date;
     if (currentMonthElement && currentYearElement) {
         today = new Date();
-        currentMonthElement.textContent = today.toLocaleString('en-US', {month: 'long'});
+        currentMonthElement.textContent = today.toLocaleString("en-US", { month: "long" });
         currentYearElement.textContent = today.getFullYear().toString();
     }
 
     // Define months array
-    const months = ['January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'];
+    const months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+    ];
 
     const renderCalendar = (monthIndex: number, year: number) => {
         const firstDay = new Date(year, monthIndex, 1).getDay();
@@ -52,32 +74,34 @@ const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
         const isCurrentMonth = today.getFullYear() === year && today.getMonth() === monthIndex;
 
-        const calendarElement = document.getElementById('calendar');
+        const calendarElement = document.getElementById("calendar");
         if (!calendarElement) return;
 
         // Helper function for zero-padding
-        const zeroPad = (num: number): string => (num < 10 ? '0' + num : num.toString());
+        const zeroPad = (num: number): string => (num < 10 ? "0" + num : num.toString());
 
         // Clear previous calendar days
-        calendarElement.innerHTML = '';
+        calendarElement.innerHTML = "";
 
         // Fill the calendar with previous month's days
         for (let i = firstDay - 1; i >= 0; i--) {
-            const prevMonthDayCell = document.createElement('div');
-            prevMonthDayCell.className = 'bg-gray-800 py-2 rounded cursor-pointer'; // Dimmer background
+            const prevMonthDayCell = document.createElement("div");
+            prevMonthDayCell.className = "bg-gray-800 py-2 rounded cursor-pointer"; // Dimmer background
             prevMonthDayCell.textContent = (prevDaysInMonth - i).toString();
-            prevMonthDayCell.addEventListener('click', () => showModal(`${year}-${zeroPad(monthIndex)}-${zeroPad(prevDaysInMonth - i)}`));
+            prevMonthDayCell.addEventListener("click", () =>
+                showModal(`${year}-${zeroPad(monthIndex)}-${zeroPad(prevDaysInMonth - i)}`),
+            );
             calendarElement.appendChild(prevMonthDayCell);
         }
 
         // Fill the calendar with current month's days
         for (let i = 1; i <= daysInMonth; i++) {
-            const dayCell = document.createElement('div');
-            dayCell.className = 'py-2 rounded cursor-pointer';
+            const dayCell = document.createElement("div");
+            dayCell.className = "py-2 rounded cursor-pointer";
             // Highlight the current date blue
-            dayCell.className += isCurrentMonth && i === today.getDate() ? ' bg-blue-600' : ' bg-gray-600';
+            dayCell.className += isCurrentMonth && i === today.getDate() ? " bg-blue-600" : " bg-gray-600";
             dayCell.textContent = i.toString();
-            dayCell.addEventListener('click', () => showModal(`${year}-${zeroPad(monthIndex + 1)}-${zeroPad(i)}`));
+            dayCell.addEventListener("click", () => showModal(`${year}-${zeroPad(monthIndex + 1)}-${zeroPad(i)}`));
             calendarElement.appendChild(dayCell);
         }
 
@@ -85,18 +109,20 @@ const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         const totalDisplayedDays = firstDay + daysInMonth;
         const remainingDays = totalDisplayedDays % 7 ? 7 - (totalDisplayedDays % 7) : 0;
         for (let i = 1; i <= remainingDays; i++) {
-            const nextMonthDayCell = document.createElement('div');
-            nextMonthDayCell.className = 'bg-gray-800 py-2 rounded cursor-pointer'; // Dimmer background
+            const nextMonthDayCell = document.createElement("div");
+            nextMonthDayCell.className = "bg-gray-800 py-2 rounded cursor-pointer"; // Dimmer background
             nextMonthDayCell.textContent = i.toString();
-            nextMonthDayCell.addEventListener('click', () => showModal(`${year}-${zeroPad(monthIndex + 2)}-${zeroPad(i)}`));
+            nextMonthDayCell.addEventListener("click", () =>
+                showModal(`${year}-${zeroPad(monthIndex + 2)}-${zeroPad(i)}`),
+            );
             calendarElement.appendChild(nextMonthDayCell);
         }
     };
 
-    document.getElementById('nextMonth')?.addEventListener('click', () => {
+    document.getElementById("nextMonth")?.addEventListener("click", () => {
         if (currentMonthElement && currentYearElement) {
-            let currentMonthIndex = months.indexOf(currentMonthElement.textContent ?? '');
-            let currentYear = parseInt(currentYearElement.textContent ?? '0');
+            let currentMonthIndex = months.indexOf(currentMonthElement.textContent ?? "");
+            let currentYear = parseInt(currentYearElement.textContent ?? "0");
 
             // Advance to the next month
             if (currentMonthIndex === 11) {
@@ -115,10 +141,10 @@ const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         }
     });
 
-    document.getElementById('prevMonth')?.addEventListener('click', () => {
+    document.getElementById("prevMonth")?.addEventListener("click", () => {
         if (currentMonthElement && currentYearElement) {
-            let currentMonthIndex = months.indexOf(currentMonthElement.textContent ?? '');
-            let currentYear = parseInt(currentYearElement.textContent ?? '0');
+            let currentMonthIndex = months.indexOf(currentMonthElement.textContent ?? "");
+            let currentYear = parseInt(currentYearElement.textContent ?? "0");
 
             // Go back to the previous month
             if (currentMonthIndex === 0) {
@@ -137,33 +163,24 @@ const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         }
     });
 
-    // Create a modal element
-    const modalElement = document.createElement('div');
-    modalElement.id = 'dateModal';
-    modalElement.style.display = 'none'; // Hide by default
-    modalElement.className = 'fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center';
-    modalElement.innerHTML = `
-            <div class="bg-white rounded p-4 text-black">
-                <p id="modalDate"></p>
-                <button id="closeModal" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded">Close</button>
-            </div>
-        `;
-    document.body.appendChild(modalElement);
-
     const showModal = (date: string) => {
-        const modalDateElement = document.getElementById('modalDate');
-        if (modalDateElement) {
+        const modalElement = document.getElementById("dateModal");
+        const modalDateElement = document.getElementById("modalDate");
+        if (modalElement && modalDateElement) {
             modalDateElement.textContent = `${date}`;
+            modalElement.style.display = "flex";
         }
-        modalElement.style.display = 'flex';
     };
 
     const closeModal = () => {
-        modalElement.style.display = 'none';
+        const modalElement = document.getElementById("dateModal");
+        if (modalElement) {
+            modalElement.style.display = "none";
+        }
     };
 
-    const closeModalButton = document.getElementById('closeModal');
-    closeModalButton?.addEventListener('click', closeModal);
+    const closeModalButton = document.getElementById("closeModal");
+    closeModalButton?.addEventListener("click", closeModal);
 
     // Initial render for the current month and year
     renderCalendar(new Date().getMonth(), new Date().getFullYear());
