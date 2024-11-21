@@ -40,7 +40,7 @@ With all of these pieces into place, I created a step-by-step plan for remotely 
 
 <br />
 
-<ol class="list-decimal">
+<ol class="pl-6 list-decimal">
     <li>
         1. SSH into my Thinkcentre (all of my devices are in a <ins>[Tailscale](https://tailscale.com)</ins>
         mesh VPN, so I can connect any one of my devices to one another via their 100.x.y.z IP)
@@ -63,6 +63,7 @@ With all of these pieces into place, I created a step-by-step plan for remotely 
 
 What happens, though, if I for some reason can't SSH into my Thinkcentre (such as when I accidentally forgot to backup
 my SSH keys when I switched from Windows to Linux on my main laptop)? I found a web app called
+
 <ins>[UpSnap](https://github.com/seriousm4x/UpSnap)</ins> which allows me to send the Wake-on-LAN packet to my PC
 through my browser. I just have to spin up a Docker container for it, publish it to an unused port, and log into it
 through my Thinkcentre's Tailscale IP. Finally, in the settings, I added my PC by supplying its MAC address and
