@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import me from "../assets/me.png";
+---
+
+<BaseLayout title="About" description="A website and blog by Alex The JPEG">
+    <div class="mb-8">
+        <div class="mt-20 flex items-center justify-center">
+            <Image src={me} alt="Me!" width={320} height={320} />
+        </div>
+        <h1 class="mt-8 text-5xl font-bold text-slate-900 dark:text-white">👋 Yo</h1>
+        <p class="mt-4 text-lg text-slate-500 dark:text-slate-400">
+            Hey there! I'm Alex, just a random guy on planet Earth currently pursuing a Masters in Computer Science. I
+            like to partake in coding, gaming, watching anime, reading manga, listening to music, playing the piano, and
+            trying to be funny on the Internet. I also make stupid stick figure drawings sometimes. Once I'm unbound by
+            the shackles of academia, I'll also make YouTube videos / livestreams.
+        </p>
+        <p class="mt-4 text-lg text-slate-500 dark:text-slate-400">
+            On this site, you'll find anything that I feel like I want to share with the world, whether that'd be
+            linking cool stuff I found, ranting about technology not working, talking about a game I've played or show
+            I've watched, or anything else, really.
+        </p>
+        <p class="mt-4 text-lg font-bold text-slate-500 dark:text-slate-400">
+            My internet presence is a safe space for people of any race, ethnicity, gender, and sexuality. Do not
+            interact with me if you discriminate based on these traits.
+        </p>
+        <!--<p class="mt-4 text-lg text-slate-500 dark:text-slate-400">-->
+        <!--    You can find me on <a href="https://github.com/alexthejpeg" class="text-blue-500 hover:underline">GitHub</a-->
+        <!--    >,-->
+        <!--    <a href="https://twitter.com/alexthejpeg" class="text-blue-500 hover:underline">Twitter</a>, and-->
+        <!--    <a href="https://www.instagram.com/alexthejpeg/" class="text-blue-500 hover:underline">Instagram</a>.-->
+        <!--</p>-->
+    </div>
+</BaseLayout>
