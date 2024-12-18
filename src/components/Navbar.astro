@@ -54,7 +54,7 @@ import { Icon } from "astro-icon/components";
 
             <!-- Navigation links -->
             <div class="hidden sm:ml-6 sm:block sm:order-none">
-                <div class="flex space-x-4">
+                <div class="flex space-x-4 items-center">
                     <a
                         href="/"
                         class="rounded-md bg-slate-950 px-3 py-2 text-sm font-medium text-white"
@@ -75,6 +75,14 @@ import { Icon } from "astro-icon/components";
                         class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                         >About</a
                     >
+                    <button
+                        id="theme-toggle"
+                        class="rounded-lg p-2 text-white hover:bg-gray-700"
+                        aria-label="Toggle dark mode"
+                    >
+                        <Icon class="text-3xl hidden dark:block" name="tabler:moon" />
+                        <Icon class="text-3xl block dark:hidden" name="tabler:sun" />
+                    </button>
                 </div>
             </div>
 
@@ -137,5 +145,12 @@ import { Icon } from "astro-icon/components";
             mobileMenu.classList.toggle("hidden");
             menuIcon.forEach((icon) => icon.classList.toggle("hidden"));
         });
+    });
+
+    const themeToggle = document.getElementById("theme-toggle");
+
+    themeToggle.addEventListener("click", () => {
+        const isDark = document.documentElement.classList.toggle("dark");
+        localStorage.theme = isDark ? "dark" : "light";
     });
 </script>
