@@ -9,7 +9,7 @@ import { Icon } from "astro-icon/components";
             <div class="sm:hidden">
                 <button
                     id="menu-toggle-button"
-                    class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                    class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                     aria-controls="mobile-menu"
                     aria-expanded="true"
                 >
@@ -42,7 +42,7 @@ import { Icon } from "astro-icon/components";
             </div>
 
             <!-- Logo -->
-            <div class="shrink-0 items-center sm:order-none sm:mx-0 hidden sm:block">
+            <div class="hidden shrink-0 items-center sm:order-none sm:mx-0 sm:block">
                 <a href="/">
                     <img
                         class="h-8 w-auto"
@@ -53,8 +53,8 @@ import { Icon } from "astro-icon/components";
             </div>
 
             <!-- Navigation links -->
-            <div class="hidden sm:ml-6 sm:block sm:order-none">
-                <div class="flex space-x-4 items-center">
+            <div class="hidden sm:order-none sm:ml-6 sm:block">
+                <div class="flex items-center space-x-4">
                     <a
                         href="/"
                         class="rounded-md bg-slate-950 px-3 py-2 text-sm font-medium text-white"
@@ -80,19 +80,19 @@ import { Icon } from "astro-icon/components";
                         class="rounded-lg p-2 text-white hover:bg-gray-700"
                         aria-label="Toggle dark mode"
                     >
-                        <Icon class="text-3xl hidden dark:block" name="tabler:moon" />
-                        <Icon class="text-3xl block dark:hidden" name="tabler:sun" />
+                        <Icon class="hidden text-3xl dark:block" name="tabler:moon" />
+                        <Icon class="block text-3xl dark:hidden" name="tabler:sun" />
                     </button>
                 </div>
             </div>
 
             <!-- Icons -->
             <div
-                class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 gap-3"
+                class="absolute inset-y-0 right-0 flex items-center gap-3 pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
             >
                 <a href="/">
                     <img
-                        class="sm:hidden h-8 w-auto"
+                        class="h-8 w-auto sm:hidden"
                         src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
                         alt="Your Company"
                     />
