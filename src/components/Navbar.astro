@@ -137,20 +137,25 @@ import { Icon } from "astro-icon/components";
     document.addEventListener("DOMContentLoaded", () => {
         const menuToggleButton = document.getElementById("menu-toggle-button");
         const mobileMenu = document.getElementById("mobile-menu");
-        const menuIcon = menuToggleButton.querySelectorAll("svg");
 
-        menuToggleButton.addEventListener("click", () => {
-            const isExpanded = menuToggleButton.getAttribute("aria-expanded") === "true";
-            menuToggleButton.setAttribute("aria-expanded", String(!isExpanded));
-            mobileMenu.classList.toggle("hidden");
-            menuIcon.forEach((icon) => icon.classList.toggle("hidden"));
-        });
+        if (menuToggleButton && mobileMenu) {
+            const menuIcon = menuToggleButton.querySelectorAll("svg");
+
+            menuToggleButton.addEventListener("click", () => {
+                const isExpanded = menuToggleButton.getAttribute("aria-expanded") === "true";
+                menuToggleButton.setAttribute("aria-expanded", String(!isExpanded));
+                mobileMenu.classList.toggle("hidden");
+                menuIcon.forEach((icon) => icon.classList.toggle("hidden"));
+            });
+        }
     });
 
     const themeToggle = document.getElementById("theme-toggle");
 
-    themeToggle.addEventListener("click", () => {
-        const isDark = document.documentElement.classList.toggle("dark");
-        localStorage.theme = isDark ? "dark" : "light";
-    });
+    if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+            const isDark = document.documentElement.classList.toggle("dark");
+            localStorage.theme = isDark ? "dark" : "light";
+        });
+    }
 </script>
