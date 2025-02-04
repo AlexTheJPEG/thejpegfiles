@@ -1,6 +1,9 @@
 ---
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Icon } from "astro-icon/components";
+
+export const prerender = true;
 
 export async function getStaticPaths() {
     const posts = await getCollection("blog");
@@ -17,6 +20,20 @@ const { Content } = await render(post);
     <div>
         <article class="text-white">
             <h1 class="mb-8 mt-20 text-5xl font-bold">{post.data.title}</h1>
+            <div class="flex gap-8 text-lg text-gray-400">
+                <span>
+                    <Icon name="tabler:clock" class="mr-1 inline-block" />
+                    {new Date(post.data.dateCreated).toISOString().split("T")[0]}
+                </span>
+                {
+                    post.data.dateUpdated &&
+                        new Date(post.data.dateUpdated).toISOString().split("T")[0] !==
+                            new Date(post.data.dateCreated).toISOString().split("T")[0] && (
+                            <span>(updated {new Date(post.data.dateUpdated).toISOString().split("T")[0]})</span>
+                        )
+                }
+            </div>
+            <br />
             <p class="text-neutral-400">{post.data.excerpt}</p>
             <div class="mt-4 text-lg">
                 <Content />

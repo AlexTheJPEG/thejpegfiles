@@ -3,7 +3,7 @@ title: Moving to Bluesky, My Initial Thoughts
 slug: moving-to-bluesky-my-initial-thoughts
 tags: ["social", "tech"]
 dateCreated: 2024-11-11
-dateUpdated: 2024-11-11
+dateUpdated:
 excerpt: My experiences with Xitter and Bluesky, and the stark contrast between the two sites.
 ---
 Around 2019-2020, I made a Xitter (which is how I will refer to the site from now on, pronounced "shitter") account, mostly to talk with some friends and catch up on game news. Over time, I built my online persona, made a few friends, and, admittedly, had fun making shitposts and stick figure drawings. However, towards the end of 2021, I realized that a few of my behaviors on that site were very mentally draining. I would doom-post whenever I had a bad day, I would spam random garbage replies to unsavory people, and I generally found the site less and less fun to use. So, I deleted **all** of my tweets and deactivated my account. (I would later reactivate and private my account just to keep my username and view replies to tweets, but otherwise I deleted the app on my phone and the bookmark on my browser)
