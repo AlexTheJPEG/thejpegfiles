@@ -1,164 +1,35 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
 import { Image } from "astro:assets";
 import me from "../assets/me.png";
 ---
 
-<head>
-    <meta charset="UTF-8" />
-    <title>The JPEG Files</title>
-</head>
-<BaseLayout title="The JPEG Files" description="A website and blog by Alex The JPEG">
-    <div class="text-white">
-        <div class="flex flex-col items-center justify-center mb-8">
-            <Image src={me} alt="Me!" width={300} height={300} />
-            <h1 class="text-4xl font-bold mt-6">👋 Yo</h1>
+<BaseLayout title="About" description="A website and blog by Alex The JPEG">
+    <div class="mb-8">
+        <div class="mt-20 flex items-center justify-center">
+            <Image src={me} alt="Me!" width={320} height={320} />
         </div>
-        <p class="text-lg mb-4">
-            {
-                `
-            Hey there! I'm Alex, just a random guy on planet Earth that partakes in 
-            coding, gaming, watching anime, reading manga, listening to music, playing 
-            the piano, and trying to be funny on the Internet. I also make stupid stick
-            figure drawings sometimes. Once I'm unbound by the shackles of academia,
-            I'll also make YouTube videos / livestreams.
-            `
-            }
+        <h1 class="mt-8 text-5xl font-bold text-slate-900 dark:text-white">👋 Yo</h1>
+        <p class="mt-4 text-lg text-slate-500 dark:text-slate-400">
+            Hey there! I'm Alex, just a random guy on planet Earth currently pursuing a Masters in Computer Science. I
+            like to partake in coding, gaming, watching anime, reading manga, listening to music, playing the piano, and
+            trying to be funny on the Internet. I also make stupid stick figure drawings sometimes. Once I'm unbound by
+            the shackles of academia, I'll also make YouTube videos / livestreams.
         </p>
-        <p class="text-lg mb-4">
-            {
-                `
-            On this site, you'll find anything that I feel like I want to share with
-            the world, whether that'd be linking cool stuff I found, ranting about
-            technology not working, talking about a game I've played or show I've watched,
-            or anything else, really.
-            `
-            }
+        <p class="mt-4 text-lg text-slate-500 dark:text-slate-400">
+            On this site, you'll find anything that I feel like I want to share with the world, whether that'd be
+            linking cool stuff I found, ranting about technology not working, talking about a game I've played or show
+            I've watched, or anything else, really.
         </p>
-        <p class="text-lg mb-4">
-            {
-                `
-            My internet presence is a safe space for people of any race, ethnicity, gender,
-            and sexuality. Do not interact with me if you discriminate based on these traits.
-            `
-            }
+        <p class="mt-4 text-lg font-bold text-slate-500 dark:text-slate-400">
+            My internet presence is a safe space for people of any race, ethnicity, gender, and sexuality. Do not
+            interact with me if you discriminate based on these traits.
         </p>
+        <!--<p class="mt-4 text-lg text-slate-500 dark:text-slate-400">-->
+        <!--    You can find me on <a href="https://github.com/alexthejpeg" class="text-blue-500 hover:underline">GitHub</a-->
+        <!--    >,-->
+        <!--    <a href="https://twitter.com/alexthejpeg" class="text-blue-500 hover:underline">Twitter</a>, and-->
+        <!--    <a href="https://www.instagram.com/alexthejpeg/" class="text-blue-500 hover:underline">Instagram</a>.-->
+        <!--</p>-->
     </div>
-    <div>
-        <nav id="interests" class="container mx-auto flex justify-between mt-8 mb-8">
-            <ul class="text-2xl list-none mb-0 flex">
-                <li
-                    id="tech"
-                    class="text-gray-400 hover:text-white mr-16 cursor-pointer transition-colors duration-200"
-                >
-                    🖥️ Tech
-                </li>
-                <li
-                    id="gaming"
-                    class="text-gray-400 hover:text-white mr-16 cursor-pointer transition-colors duration-200"
-                >
-                    🎮️ Gaming
-                </li>
-                <li
-                    id="anime"
-                    class="text-gray-400 hover:text-white mr-16 cursor-pointer transition-colors duration-200"
-                >
-                    🇯🇵️ Anime
-                </li>
-                <li
-                    id="music"
-                    class="text-gray-400 hover:text-white mr-16 cursor-pointer transition-colors duration-200"
-                >
-                    🎵 Music
-                </li>
-            </ul>
-        </nav>
-        <div id="content" class="text-white text-lg h-96 overflow-y-auto">
-            <div id="tech-content" class="interest-content">
-                <p class="mb-4">
-                    I'm a CS major, so of course I'm surrounded by technology for most of my waking hours. I'm most
-                    comfortable with the Python programming language, although I also have experience with Java and
-                    C/C++ for school, and I know a little bit of Rust because I thought it would be interesting to
-                    learn. I'm also trying to get the hang of HTML, CSS, and JavaScript (I mean, I made this
-                    website...that's gotta count for something right?). I also learned Docker and networking by
-                    maintaining a small homelab on a Lenovo Thinkcentre.
-                </p>
-                <p class="mb-4">
-                    I also have a good amount of experience with Linux. I actually used to daily drive Linux for a bit,
-                    but I had to switch back to Windows for work and school reasons. My gaming PC at home and my main
-                    laptop use Windows, and I have a spare laptop that runs Arch (btw) to fulfill my tinkering needs.
-                    (I'll fully switch to Linux one day...one day...)
-                </p>
-            </div>
-            <div id="gaming-content" class="interest-content" style="display: none;">
-                <p class="mb-4">
-                    Gaming is one of my favorite pastimes. My PC is my preferred way to game, but I also have a Steam
-                    Deck and Nintendo Switch to play games on the go. At home, I keep my Wii U and PS3 in my room. I
-                    used to have an original Wii, which was my childhood console, before I gave it away to a local
-                    after-school camp.
-                </p>
-                <p class="mb-4">
-                    I'm still trying to play through the many games I bought on Steam and the free games of the week I
-                    grabbed on Epic...
-                </p>
-            </div>
-            <div id="anime-content" class="interest-content" style="display: none;">
-                <p class="mb-4">
-                    I actually only started watching anime relatively recently. About a few months before the COVID-19
-                    quarantine, I started JoJo's Bizarre Adventure because I wanted to get the "jojo references" my
-                    friends were making. Then I explored other shows like My Hero Academia and Dr. Stone on a whim, and
-                    before I knew it, I found a new love for anime. There's still so many shows everyone talks about
-                    that I have yet to watch...
-                </p>
-                <p class="mb-4">
-                    I also catch up with some manga and webtoons. Recently, I started buying physical manga for a couple
-                    series that I have a personal connection with.
-                </p>
-            </div>
-            <div id="music-content" class="interest-content" style="display: none;">
-                <p class="mb-4">
-                    Music has been and always will be a huge part of my life. I played the piano since I was four (still
-                    playing!), and I played the violin for middle and high school. I also listen to music a lot when I'm
-                    going on walks, sitting in the car, studying, playing games, etc. My usual playlist contains video
-                    game OSTs, EDM, and anime OPs / EDs, but I also listen to classical music / lo-fi hip hop when I
-                    need to lock in for work. I'm also in a Spotify blend playlist with my friends whenever I want to
-                    listen to something new.
-                </p>
-            </div>
-        </div>
-    </div>
-    <script>
-        const navItems = document.querySelectorAll("#interests ul li");
-        const contentDivs = document.querySelectorAll(".interest-content") as NodeListOf<HTMLElement>;
-
-        function showContent(interest: string) {
-            contentDivs.forEach((div) => {
-                if (div.id === `${interest}-content`) {
-                    div.style.display = "block";
-                } else {
-                    div.style.display = "none";
-                }
-            });
-
-            navItems.forEach((item) => {
-                if (item.id === interest) {
-                    item.classList.remove("text-gray-400");
-                    item.classList.add("text-white", "underline");
-                } else {
-                    item.classList.remove("text-white", "underline");
-                    item.classList.add("text-gray-400");
-                }
-            });
-        }
-
-        navItems.forEach((item) => {
-            item.addEventListener("click", () => {
-                const interest = item.id;
-                showContent(interest);
-            });
-        });
-
-        showContent("tech");
-    </script>
 </BaseLayout>

@@ -1,42 +1,173 @@
 ---
-
+import { Icon } from "astro-icon/components";
 ---
 
-<header>
-    <nav class="navbar text-white">
-        <div class="navbar-brand">The JPEG Files</div>
-        <ul class="navbar-menu">
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-        </ul>
-    </nav>
-</header>
+<nav class="bg-slate-900">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div class="relative flex h-16 items-center justify-between">
+            <!-- Mobile menu toggle button -->
+            <div class="sm:hidden">
+                <button
+                    id="menu-toggle-button"
+                    class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                    aria-controls="mobile-menu"
+                    aria-expanded="true"
+                >
+                    <span class="sr-only">Open main menu</span>
+                    <!-- Hamburger icon -->
+                    <svg
+                        class="hidden h-6 w-6"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        aria-hidden="true"
+                    >
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <!-- Close icon -->
+                    <svg
+                        class="block h-6 w-6"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        aria-hidden="true"
+                    >
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
 
-<style>
-    .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 2rem;
-    }
+            <!-- Logo -->
+            <div class="hidden shrink-0 items-center sm:order-none sm:mx-0 sm:block">
+                <a href="/" class="text-2xl font-bold text-white">
+                    <!--  <img
+                        class="h-8 w-auto"
+                        src="./public/favicon.ico"
+                        alt="The JPEG Files"
+                    /> -->
+                    The JPEG Files
+                </a>
+            </div>
 
-    .navbar-brand {
-        font-size: 1.5rem;
-        font-weight: bold;
-    }
+            <!-- Navigation links -->
+            <div class="hidden sm:order-none sm:ml-6 sm:block">
+                <div class="flex items-center space-x-4">
+                    <a
+                        href="/"
+                        class="rounded-md bg-slate-950 px-3 py-2 text-sm font-medium text-white"
+                        aria-current="page">Home</a
+                    >
+                    <a
+                        href="/blog"
+                        class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                        >Blog</a
+                    >
+                    <a
+                        href="#"
+                        class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                        >Calendar</a
+                    >
+                    <a
+                        href="/about"
+                        class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                        >About</a
+                    >
+                    <button
+                        id="theme-toggle"
+                        class="rounded-lg p-2 text-white hover:bg-gray-700"
+                        aria-label="Toggle dark mode"
+                    >
+                        <Icon class="hidden text-3xl dark:block" name="tabler:moon" />
+                        <Icon class="block text-3xl dark:hidden" name="tabler:sun" />
+                    </button>
+                </div>
+            </div>
 
-    .navbar-menu {
-        display: flex;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-    }
+            <!-- Icons -->
+            <div
+                class="absolute inset-y-0 right-0 flex items-center gap-3 pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+            >
+                <a href="/">
+                    <img
+                        class="h-8 w-auto sm:hidden"
+                        src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
+                        alt="Your Company"
+                    />
+                </a>
+                <a href="https://www.backloggd.com/u/AlexTheJPEG/"
+                    ><Icon class="text-3xl text-white" name="tabler:device-gamepad-2" /></a
+                >
+                <a href="https://anilist.co/user/AlexTheJPEG/"
+                    ><Icon class="text-3xl text-white" name="tabler:device-tv" /></a
+                >
+                <a href="https://simkl.com/7318320/dashboard/"
+                    ><Icon class="text-3xl text-white" name="tabler:movie" /></a
+                >
+                <a href="https://www.goodreads.com/user/show/187225254-alex-the-jpeg"
+                    ><Icon class="text-3xl text-white" name="tabler:book" /></a
+                >
+                <a href="https://www.last.fm/user/AlexTheJPEG"
+                    ><Icon class="text-3xl text-white" name="tabler:music" /></a
+                >
+            </div>
+        </div>
+    </div>
 
-    .navbar-menu li {
-        margin-left: 1rem;
-    }
+    <!-- Mobile menu -->
+    <div class="sm:hidden" id="mobile-menu">
+        <div class="space-y-1 px-2 pb-3 pt-2">
+            <a
+                href="#"
+                class="block rounded-md bg-slate-950 px-3 py-2 text-base font-medium text-white"
+                aria-current="page">Home</a
+            >
+            <a
+                href="#"
+                class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                >Blog</a
+            >
+            <a
+                href="#"
+                class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                >Calendar</a
+            >
+            <a
+                href="/about"
+                class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                >About</a
+            >
+        </div>
+    </div>
+</nav>
 
-    .navbar-menu a {
-        text-decoration: none;
+<script>
+    // Toggle menu functionality
+    document.addEventListener("DOMContentLoaded", () => {
+        const menuToggleButton = document.getElementById("menu-toggle-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        if (menuToggleButton && mobileMenu) {
+            const menuIcon = menuToggleButton.querySelectorAll("svg");
+
+            menuToggleButton.addEventListener("click", () => {
+                const isExpanded = menuToggleButton.getAttribute("aria-expanded") === "true";
+                menuToggleButton.setAttribute("aria-expanded", String(!isExpanded));
+                mobileMenu.classList.toggle("hidden");
+                menuIcon.forEach((icon) => icon.classList.toggle("hidden"));
+            });
+        }
+    });
+
+    const themeToggle = document.getElementById("theme-toggle");
+
+    if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+            const isDark = document.documentElement.classList.toggle("dark");
+            localStorage.theme = isDark ? "dark" : "light";
+        });
     }
-</style>
+</script>
