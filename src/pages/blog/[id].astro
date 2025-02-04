@@ -18,7 +18,7 @@ const { Content } = await render(post);
 
 <BaseLayout title={post.data.title} description={post.data.excerpt}>
     <div>
-        <article class="text-white">
+        <article class="text-slate-900 dark:text-white">
             <h1 class="mb-8 mt-20 text-5xl font-bold">{post.data.title}</h1>
             <div class="flex gap-8 text-lg text-gray-400">
                 <span>
@@ -35,7 +35,7 @@ const { Content } = await render(post);
             </div>
             <br />
             <p class="text-neutral-400">{post.data.excerpt}</p>
-            <div class="prose prose-invert mt-4 max-w-none text-lg">
+            <div class="prose mt-4 max-w-none text-lg dark:prose-invert">
                 <Content />
             </div>
         </article>
